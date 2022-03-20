@@ -2,52 +2,52 @@
 var carta1 = {
   nome: 'Cosmic Queen Ashe',
   imagem: 'images/card-ashe.png',
-  atributos: { 'Dano Físico': 6, 'Dano Mágico': 5, Defesa: 2 }
+  atributos: { 'Dano Físico': 4, 'Dano Mágico': 4, Defesa: 2 }
 }
 var carta2 = {
   nome: 'Blood Moon Aatrox',
   imagem: 'images/card-aatrox.png',
-  atributos: { 'Dano Físico': 7, 'Dano Mágico': 2, Defesa: 7 }
+  atributos: { 'Dano Físico': 5, 'Dano Mágico': 2, Defesa: 3 }
 }
 var carta3 = {
   nome: 'Lord Veigar',
   imagem: 'images/card-veigar.png',
-  atributos: { 'Dano Físico': 1, 'Dano Mágico': 9, Defesa: 4 }
+  atributos: { 'Dano Físico': 1, 'Dano Mágico': 8, Defesa: 1 }
 }
 var carta4 = {
   nome: 'True Damage Senna ',
   imagem: 'images/card-senna.png',
-  atributos: { 'Dano Físico': 9, 'Dano Mágico': 4, Defesa: 3 }
+  atributos: { 'Dano Físico': 5, 'Dano Mágico': 3, Defesa: 2 }
 }
 var carta5 = {
   nome: 'Thunder Lord Ornn',
   imagem: 'images/card-ornn.png',
-  atributos: { 'Dano Físico': 4, 'Dano Mágico': 6, Defesa: 9 }
+  atributos: { 'Dano Físico': 3, 'Dano Mágico': 2, Defesa: 5 }
 }
 var carta6 = {
   nome: 'Majestic Empress Morgana',
   imagem: 'images/card-morgana.png',
-  atributos: { 'Dano Físico': 3, 'Dano Mágico': 7, Defesa: 4 }
+  atributos: { 'Dano Físico': 2, 'Dano Mágico': 5, Defesa: 3 }
 }
 var carta7 = {
   nome: 'Nightbringer Vladimir',
   imagem: 'images/card-vladimir.png',
-  atributos: { 'Dano Físico': 6, 'Dano Mágico': 8, Defesa: 5 }
+  atributos: { 'Dano Físico': 2, 'Dano Mágico': 4, Defesa: 4 }
 }
 var carta8 = {
   nome: 'Lunar Eclipse Leona',
   imagem: 'images/card-leona.png',
-  atributos: { 'Dano Físico': 4, 'Dano Mágico': 4, Defesa: 7 }
+  atributos: { 'Dano Físico': 1, 'Dano Mágico': 1, Defesa: 8 }
 }
 var carta9 = {
   nome: 'Tradidional Sejuani',
   imagem: 'images/card-sejuani.png',
-  atributos: { 'Dano Físico': 5, 'Dano Mágico': 5, Defesa: 7 }
+  atributos: { 'Dano Físico': 4, 'Dano Mágico': 2, Defesa: 4 }
 }
 var carta10 = {
   nome: 'Ruined Pantheon',
   imagem: 'images/card-pantheon.png',
-  atributos: { 'Dano Físico': 7, 'Dano Mágico': 6, Defesa: 7 }
+  atributos: { 'Dano Físico': 4, 'Dano Mágico': 3, Defesa: 3 }
 }
 //Array que irá armazenar todos os objetos que iremos criar com as informações das cartas
 var cartas = [
