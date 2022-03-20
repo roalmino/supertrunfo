@@ -1,0 +1,9 @@
+.main-header {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+.main-header .page-logo {
+  width: 200px;
+  object-fit: contain;
+}

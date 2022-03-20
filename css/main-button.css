@@ -1,0 +1,13 @@
+.main-button {
+  padding: 0.8rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  background-color: rgba(177, 143, 207, 0.5);
+  transition: background-color 300ms linear;
+}
+
+.main-button:hover {
+  background-color: rgba(177, 143, 207, 1);
+}
