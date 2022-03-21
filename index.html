@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="css/main-header.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="css/main-button.css" />
+    <link rel="stylesheet" href="css/card-section.css" />
+    <link rel="stylesheet" href="css/painel-section.css" />
   </head>
 
   <body>
@@ -29,26 +31,31 @@
               />
               <h3></h3>
             </div>
+            <p class="tamanhoBaralhoJogador"></p>
           </div>
 
-          <div class="painel">
-            <button
-              onclick="sortearCarta()"
-              id="btnSortear"
-              class="main-button"
-            >
-              Sortear carta
-            </button>
-            <h2>Escolha o seu atributo</h2>
-            <button
-              class="main-button"
-              type="button"
-              id="btnJogar"
-              onclick="jogar()"
-              disabled="false"
-            >
-              Jogar
-            </button>
+          <div class="painel-section">
+            <div class="draft show">
+              <button
+                onclick="iniciarJogo()"
+                id="btnSortear"
+                class="main-button"
+              >
+                Iniciar o jogo
+              </button>
+            </div>
+            <div class="choose">
+              <h2 class="chooseAttribute">Escolha o seu atributo</h2>
+              <button
+                class="main-button"
+                type="button"
+                id="btnJogar"
+                onclick="jogar()"
+                disabled="false"
+              >
+                Jogar
+              </button>
+            </div>
             <div id="resultado"></div>
           </div>
 
@@ -60,6 +67,7 @@
                 style="width: inherit; height: inherit; position: absolute"
               />
             </div>
+            <p class="tamanhoBaralhoMaquina"></p>
           </div>
         </div>
       </form>

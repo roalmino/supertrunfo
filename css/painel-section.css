@@ -1,0 +1,11 @@
+.painel-section .draft,
+.choose {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.painel-section .draft.show,
+.choose.show {
+  opacity: 1;
+  visibility: visible;
+}

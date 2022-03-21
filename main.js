@@ -7,7 +7,7 @@ var carta1 = {
 var carta2 = {
   nome: 'Blood Moon Aatrox',
   imagem: 'images/card-aatrox.png',
-  atributos: { 'Dano Físico': 5, 'Dano Mágico': 2, Defesa: 3 }
+  atributos: { 'Dano Físico': 4, 'Dano Mágico': 2, Defesa: 4 }
 }
 var carta3 = {
   nome: 'Lord Veigar',
@@ -17,22 +17,22 @@ var carta3 = {
 var carta4 = {
   nome: 'True Damage Senna ',
   imagem: 'images/card-senna.png',
-  atributos: { 'Dano Físico': 5, 'Dano Mágico': 3, Defesa: 2 }
+  atributos: { 'Dano Físico': 5, 'Dano Mágico': 5, Defesa: 2 }
 }
 var carta5 = {
   nome: 'Thunder Lord Ornn',
   imagem: 'images/card-ornn.png',
-  atributos: { 'Dano Físico': 3, 'Dano Mágico': 2, Defesa: 5 }
+  atributos: { 'Dano Físico': 3, 'Dano Mágico': 3, Defesa: 4 }
 }
 var carta6 = {
   nome: 'Majestic Empress Morgana',
   imagem: 'images/card-morgana.png',
-  atributos: { 'Dano Físico': 2, 'Dano Mágico': 5, Defesa: 3 }
+  atributos: { 'Dano Físico': 2, 'Dano Mágico': 4, Defesa: 4 }
 }
 var carta7 = {
   nome: 'Nightbringer Vladimir',
   imagem: 'images/card-vladimir.png',
-  atributos: { 'Dano Físico': 2, 'Dano Mágico': 4, Defesa: 4 }
+  atributos: { 'Dano Físico': 3, 'Dano Mágico': 6, Defesa: 3 }
 }
 var carta8 = {
   nome: 'Lunar Eclipse Leona',
@@ -40,14 +40,34 @@ var carta8 = {
   atributos: { 'Dano Físico': 1, 'Dano Mágico': 1, Defesa: 8 }
 }
 var carta9 = {
-  nome: 'Tradidional Sejuani',
+  nome: 'Tradicional Sejuani',
   imagem: 'images/card-sejuani.png',
   atributos: { 'Dano Físico': 4, 'Dano Mágico': 2, Defesa: 4 }
 }
 var carta10 = {
   nome: 'Ruined Pantheon',
   imagem: 'images/card-pantheon.png',
-  atributos: { 'Dano Físico': 4, 'Dano Mágico': 3, Defesa: 3 }
+  atributos: { 'Dano Físico': 5, 'Dano Mágico': 2, Defesa: 5 }
+}
+var carta11 = {
+  nome: 'Dream Dragon Yasuo',
+  imagem: 'images/card-yasuo.png',
+  atributos: { 'Dano Físico': 6, 'Dano Mágico': 2, Defesa: 4 }
+}
+var carta12 = {
+  nome: 'IG Irelia',
+  imagem: 'images/card-irelia.png',
+  atributos: { 'Dano Físico': 8, 'Dano Mágico': 4, Defesa: 2 }
+}
+var carta13 = {
+  nome: 'Cosmic Destiny Nami',
+  imagem: 'images/card-nami.png',
+  atributos: { 'Dano Físico': 2, 'Dano Mágico': 4, Defesa: 4 }
+}
+var carta14 = {
+  nome: 'Withered Rose Syndra',
+  imagem: 'images/card-syndra.png',
+  atributos: { 'Dano Físico': 4, 'Dano Mágico': 8, Defesa: 2 }
 }
 //Array que irá armazenar todos os objetos que iremos criar com as informações das cartas
 var cartas = [
@@ -60,33 +80,73 @@ var cartas = [
   carta7,
   carta8,
   carta9,
-  carta10
+  carta10,
+  carta11,
+  carta12,
+  carta13,
+  carta14
 ]
 
 //Função que irá sortear as cartas. Isso poderia ser feito de forma direta, mas por questão de legibilidade e manutenção, criamos dentro de uma função que ficará responsável por aquela parte do código
 //Criamos as variáveis cartaMaquina e cartaJogador fora das funções por questão de escopo, para permitir que elas possam ser acessadas mais tarde por outras partes do código.
 var cartaMaquina
 var cartaJogador
-function sortearCarta() {
-  //É necessário criar uma variável para ser o indice aleatório que determina a carta  da máquina e do jogador
-  var indiceDaMaquina = parseInt(Math.random() * 10)
-  cartaMaquina = cartas[indiceDaMaquina]
+var baralhoJogador = []
+var baralhoMaquina = []
 
-  var indiceDoJogador = parseInt(Math.random() * 10)
-  //Verificar se a carta da máquina é a mesma do jogador
-  while (indiceDaMaquina == indiceDoJogador) {
-    indiceDoJogador = parseInt(Math.random() * 10)
-  }
-  cartaJogador = cartas[indiceDoJogador]
-
+function iniciarJogo() {
   //Agora, é necessário desabilitar o botão sortear para não ser possível fazer várias vezes e habilitar o outro botão para começar o jogo. Para desabilitar o botão, nos o acessamos através do getElementById e inserimos a propriedade disable=true e para habilitar o outro botão fazemos o mesmo.
   document.getElementById('btnSortear').disabled = true
   document.getElementById('btnJogar').disabled = false
-
-  console.log(cartaJogador)
+  var chooseAttribute = document.querySelector('.choose')
+  chooseAttribute.classList.toggle('show')
+  var draft = document.querySelector('.draft')
+  draft.classList.toggle('show')
 
   //Função para mostrar na tela a imagem referente a carta do jogador, que irá aparecer logo apos a função sortear ser executada
+  resetar()
+  dividirBaralho()
+  sortearCartas()
+
   exibirCartaJogador()
+  atualizarBaralho()
+}
+
+function dividirBaralho() {
+  var baralhoTemp = cartas.slice()
+  var card
+
+  //Limpa os baralhos
+  baralhoJogador = []
+  baralhoMaquina = []
+
+  while (baralhoTemp.length > 0) {
+    //Atribui uma carta ao baralho do jogador e retira do baralho temporário aquela carta
+    card = parseInt(Math.random() * baralhoTemp.length)
+    baralhoJogador.push(baralhoTemp[card])
+    baralhoTemp.splice(card, 1)
+
+    card = parseInt(Math.random() * baralhoTemp.length)
+    baralhoMaquina.push(baralhoTemp[card])
+    baralhoTemp.splice(card, 1)
+  }
+}
+
+function sortearCartas() {
+  //É necessário criar uma variável para ser o indice aleatório que determina a carta  da máquina e do jogador
+  var indiceDaMaquina = parseInt(Math.random() * baralhoMaquina.length)
+  cartaMaquina = baralhoMaquina[indiceDaMaquina]
+
+  var indiceDoJogador = parseInt(Math.random() * baralhoJogador.length)
+  cartaJogador = baralhoJogador[indiceDoJogador]
+}
+
+function atualizarBaralho() {
+  var quantidadeJogador = document.querySelector('.tamanhoBaralhoJogador')
+  var quantidadeMaquina = document.querySelector('.tamanhoBaralhoMaquina')
+
+  quantidadeJogador.textContent = baralhoJogador.length
+  quantidadeMaquina.textContent = baralhoMaquina.length
 }
 
 //Função para exibir a carta e os atributos do jogador
@@ -133,13 +193,64 @@ function jogar() {
   var valorMaquina = cartaMaquina.atributos[atributoSelecionado]
 
   if (valorJogador > valorMaquina) {
+    calculaResultado(1)
     resultado.innerHTML = '<p class="resultado-final">Parabéns! Você ganhou</p>'
   } else if (valorMaquina > valorJogador) {
+    calculaResultado(2)
     resultado.innerHTML = '<p class="resultado-final">Que pena! Você perdeu</p>'
   } else {
     resultado.innerHTML = '<p class="resultado-final">Empatou!</p>'
   }
   exibirCartaMaquina()
+
+  if (baralhoJogador.length == 0 || baralhoMaquina.length == 0) {
+    fimDeJogo()
+  } else {
+    document.getElementById('btnJogar').onclick = function () {
+      continuarJogando()
+    }
+  }
+}
+
+function continuarJogando() {
+  resetar()
+  sortearCartas()
+  exibirCartaJogador()
+  atualizarBaralho()
+  document.getElementById('btnJogar').onclick = function () {
+    jogar()
+  }
+}
+
+function calculaResultado(resultado) {
+  var ganhador = resultado
+  var indexMaquina = baralhoMaquina.indexOf(cartaMaquina)
+  var indexJogador = baralhoJogador.indexOf(cartaJogador)
+
+  if (ganhador == 1) {
+    baralhoJogador.push(baralhoMaquina[indexMaquina])
+    baralhoMaquina.splice(indexMaquina, 1)
+  }
+
+  // transfere para a máquina a carta do jogador
+  if (ganhador == 2) {
+    baralhoMaquina.push(baralhoJogador[indexJogador])
+    baralhoJogador.splice(indexJogador, 1)
+  }
+  console.log(baralhoMaquina)
+  console.log(baralhoJogador)
+}
+
+function resetar() {
+  var divCartaMaquina = document.getElementById('carta-maquina')
+  var nome = document.querySelector('.cartaMaquina-subtitle')
+  var resultado = document.querySelector('#resultado')
+
+  var imagem = `<img src="images/card-background1.png" style="width: inherit; height: inherit; position: absolute"/>`
+  nome.innerHTML = ''
+
+  divCartaMaquina.innerHTML = imagem
+  resultado.innerHTML = ''
 }
 
 function exibirCartaMaquina() {
@@ -158,4 +269,23 @@ function exibirCartaMaquina() {
 
   var nome = `<p class="carta-subtitle">${cartaMaquina.nome}</p>`
   divCartaMaquina.innerHTML = imagem + tagHTML + opcoesTexto + '</div>'
+}
+
+function fimDeJogo() {
+  var resultado = document.querySelector('#resultado')
+
+  if (baralhoJogador.length > baralhoMaquina.length) {
+    resultado.innerHTML =
+      '<p class="resultado-final">O jogo acabou, você venceu!</p>'
+  } else {
+    resultado.innerHTML =
+      '<p class="resultado-final"O jogo acabou, você perdeu!</p>'
+  }
+
+  document.getElementById('btnSortear').disabled = false
+  document.getElementById('btnJogar').disabled = true
+  var chooseAttribute = document.querySelector('.choose')
+  chooseAttribute.classList.toggle('show')
+  var draft = document.querySelector('.draft')
+  draft.classList.toggle('show')
 }
